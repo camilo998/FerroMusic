@@ -1,0 +1,620 @@
+/* ==========================================================================
+   Symphony Web Player — CSS puro (reemplazo de Tailwind CSS)
+   ========================================================================== */
+
+:root {
+  /* Paleta reducida a los colores realmente usados en la interfaz */
+  --color-page-bg: #ffffff;      /* fondo general de la página */
+  --color-wood-bar-bg: rgb(229, 213, 183); /* fondo madera de la barra del reproductor */
+  --color-accent: #1e293b;       /* botón de play e iconos de los controles */
+  --color-on-accent: #ffffff;    /* icono de play sobre el botón de acento */
+  --color-surface-variant: #e3e2e1; /* placeholder de la carátula del álbum */
+  --color-on-surface-variant: #45474c; /* enlaces de navegación */
+  --color-secondary: #805533;    /* hover/estado activo de navegación */
+
+  /* Radios */
+  --radius-lg: 0.25rem;
+  --radius-full: 0.75rem;
+
+  /* Espaciados */
+  --spacing-gutter: 1rem;
+  --spacing-element-gap: 0.75rem;
+  --spacing-container-padding: 1.5rem;
+  --spacing-control-gap: 2rem;
+
+  /* Tipografía */
+  --font-family-base: "Inter", sans-serif;
+  --font-family-logo: "Eagle Lake", serif;
+
+  --font-label-md-size: 12px;
+  --font-label-md-line: 16px;
+  --font-label-md-spacing: 0.05em;
+  --font-label-md-weight: 600;
+
+  --font-display-sm-line: 32px;
+
+  --font-label-sm-size: 11px;
+  --font-label-sm-line: 14px;
+  --font-label-sm-spacing: 0.02em;
+
+  --font-body-md-size: 16px;
+  --font-body-md-line: 24px;
+  --font-body-md-spacing: 0em;
+  --font-body-md-weight: 400;
+}
+
+/* ==========================================================================
+   Reset básico
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Iconos Material Symbols
+   ========================================================================== */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 24px;
+  line-height: 1;
+  user-select: none;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ==========================================================================
+   Base del documento
+   ========================================================================== */
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-on-surface-variant);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-base);
+  font-size: var(--font-body-md-size);
+  line-height: var(--font-body-md-line);
+  letter-spacing: var(--font-body-md-spacing);
+  font-weight: var(--font-body-md-weight);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Header / Navegación superior
+   ========================================================================== */
+
+.app-header {
+  background-color: var(--color-page-bg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 64px;
+  flex-shrink: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-gutter);
+}
+
+@media (max-width: 767px) {
+  .app-header {
+    display: none;
+  }
+}
+
+.app-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-container-padding);
+  margin: 0 auto;
+}
+
+.app-header__logo {
+  font-family: var(--font-family-logo);
+  font-size: 28px;
+  line-height: var(--font-display-sm-line);
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.app-nav {
+  display: flex;
+  gap: var(--spacing-gutter);
+  margin-left: var(--spacing-container-padding);
+}
+
+.app-nav__link {
+  color: var(--color-on-surface-variant);
+  font-size: var(--font-label-md-size);
+  line-height: var(--font-label-md-line);
+  letter-spacing: var(--font-label-md-spacing);
+  font-weight: var(--font-label-md-weight);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.app-nav__link:hover {
+  color: var(--color-secondary);
+}
+
+.app-nav__link--active {
+  color: var(--color-secondary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: 2px;
+}
+
+/* ==========================================================================
+   Área principal (placeholder de contenido)
+   ========================================================================== */
+
+.app-main {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--spacing-container-padding);
+  padding-bottom: 8rem;
+}
+
+.app-main__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Barra inferior del reproductor
+   ========================================================================== */
+
+.player-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 96px;
+  background-color: var(--color-wood-bar-bg);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-container-padding);
+}
+
+/* --- Sección izquierda: info de la pista --- */
+
+.player-bar__track {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-element-gap);
+  width: 33.3333%;
+  min-width: 200px;
+}
+
+.player-bar__art {
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-surface-variant);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  cursor: pointer;
+}
+
+.player-bar__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.player-bar__art:hover img {
+  transform: scale(1.1);
+}
+
+.player-bar__art-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  color: #ffffff;
+}
+
+.player-bar__art:hover .player-bar__art-overlay {
+  opacity: 1;
+}
+
+.player-bar__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.player-bar__title {
+  font-size: var(--font-body-md-size);
+  line-height: var(--font-body-md-line);
+  font-weight: 600;
+  color: var(--color-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  margin: 0;
+}
+
+.player-bar__title:hover {
+  text-decoration: underline;
+}
+
+.player-bar__artist {
+  font-size: var(--font-label-sm-size);
+  line-height: var(--font-label-sm-line);
+  letter-spacing: var(--font-label-sm-spacing);
+  color: var(--color-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  margin: 0;
+}
+
+.player-bar__favorite {
+  margin-left: 0.5rem;
+  color: var(--color-accent);
+  transition: color 0.2s ease;
+}
+
+/* --- Sección central: controles y progreso --- */
+
+.player-bar__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33.3333%;
+  min-width: 300px;
+}
+
+.player-bar__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-control-gap);
+  margin-bottom: 0.5rem;
+}
+
+.player-bar__controls button {
+  color: var(--color-accent);
+  transition: transform 0.15s ease, color 0.2s ease;
+}
+
+.player-bar__controls button:hover {
+  transform: scale(1.05);
+}
+
+.player-bar__controls button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 639px) {
+  .player-bar__controls .is-hidden-sm {
+    display: none;
+  }
+}
+
+.player-bar__play {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent)!important;
+  border-radius: var(--radius-full);
+  padding: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-bar__progress {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.player-bar__time {
+  font-size: var(--font-label-sm-size);
+  line-height: var(--font-label-sm-line);
+  letter-spacing: var(--font-label-sm-spacing);
+  color: var(--color-accent);
+}
+
+.player-bar__track-bar {
+  flex: 1 1 auto;
+  height: 4px;
+  background-color: rgba(30, 41, 59, 0.12);
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: height 0.15s ease;
+}
+
+.player-bar__progress:hover .player-bar__track-bar {
+  height: 6px;
+}
+
+.player-bar__buffered {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 75%;
+  background-color: rgba(30, 41, 59, 0.15);
+  border-radius: var(--radius-full);
+}
+
+.player-bar__played {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 33.3333%;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+.player-bar__thumb {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translate(50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.player-bar__progress:hover .player-bar__thumb {
+  opacity: 1;
+}
+
+/* --- Sección derecha: volumen y utilidades --- */
+
+.player-bar__utils {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-element-gap);
+  width: 33.3333%;
+  min-width: 200px;
+}
+
+.player-bar__utils button {
+  color: var(--color-accent);
+  transition: color 0.2s ease;
+}
+
+@media (max-width: 767px) {
+  .player-bar__utils .is-hidden-md {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .player-bar__utils .is-hidden-lg {
+    display: none;
+  }
+}
+
+.player-bar__volume {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 96px;
+  cursor: pointer;
+}
+
+@media (max-width: 639px) {
+  .player-bar__volume {
+    display: none;
+  }
+}
+
+.player-bar__volume-bar {
+  flex: 1 1 auto;
+  height: 4px;
+  background-color: rgba(30, 41, 59, 0.12);
+  border-radius: var(--radius-full);
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: height 0.15s ease;
+}
+
+.player-bar__volume:hover .player-bar__volume-bar {
+  height: 6px;
+}
+
+.player-bar__volume-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 66.6666%;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+.player-bar__volume-thumb {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translate(50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.player-bar__volume:hover .player-bar__volume-thumb {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Cargar música local
+   ========================================================================== */
+
+.local-upload {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--spacing-element-gap);
+  flex-wrap: wrap;
+}
+
+.local-upload__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-label-md-size);
+  font-weight: var(--font-label-md-weight);
+  letter-spacing: var(--font-label-md-spacing);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.local-upload__button:hover {
+  opacity: 0.85;
+}
+
+.local-upload__button .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.local-upload__filename {
+  font-size: var(--font-label-sm-size);
+  color: var(--color-on-surface-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 320px;
+}
+
+/* ==========================================================================
+   Visualizador de audio (fuego que reacciona al ritmo)
+   ========================================================================== */
+
+.visualizer {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0a;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--spacing-container-padding);
+}
+
+.visualizer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Navegación móvil inferior
+   ========================================================================== */
+
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  background-color: var(--color-page-bg);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-container-padding);
+}
+
+/* Se mantiene oculta como en el diseño original (clase "hidden" explícita) */
+
+.mobile-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-on-surface-variant);
+}
+
+.mobile-nav__item:hover {
+  color: var(--color-secondary);
+}
+
+.mobile-nav__item--active {
+  color: var(--color-secondary);
+}
+
+.mobile-nav__item--active .mobile-nav__icon-wrap {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: var(--radius-full);
+  padding: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.mobile-nav__label {
+  font-size: var(--font-label-sm-size);
+  line-height: var(--font-label-sm-line);
+  letter-spacing: var(--font-label-sm-spacing);
+}
+
+.mobile-nav__item--active .mobile-nav__label {
+  font-weight: 700;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symphony Web Player</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Barra de navegación superior -->
+<header class="app-header">
+  <div class="app-header__inner">
+    <span class="app-header__logo">Symphony</span>
+
+  </div>
+</header>
+
+<!-- Área principal (placeholder de contenido) -->
+<main class="app-main">
+
+</main>
+
+<!-- Barra inferior del reproductor -->
+<footer class="player-bar">
+
+  <!-- Sección izquierda: info de la pista -->
+  <div class="player-bar__track">
+    <div class="player-bar__art">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlyfdUpHaPczryahoVvhV0gm9PaHktEL5bJ4HbqOdW-oxVoigDKHU1UedT8pG-IQwyhCt_Hq0FNACyF2p-VpiG4Y0xGpRLWuaUS137QSKz6s5PGlNiXbYTXh5p_8p9uNeyex8ZBFyHDlA01gr6OE3FvKlzhNOkukQEKVp4Ix9y_DnF5UXIv6a-HCXIowjBmOTVRcUCdcT4lmcipCGmKgP0LbxDIxcT4bgJhffMxEYgaWfK9XJ2POD2" alt="Album Art">
+      <div class="player-bar__art-overlay">
+        <span class="material-symbols-outlined filled">open_in_full</span>
+      </div>
+    </div>
+    <div class="player-bar__info">
+      <h4 class="player-bar__title">Midnight City</h4>
+      <p class="player-bar__artist">M83 • Hurry Up, We're Dreaming</p>
+    </div>
+    <button class="player-bar__favorite" aria-label="Favorite">
+      <span class="material-symbols-outlined filled">favorite</span>
+    </button>
+  </div>
+
+  <!-- Sección central: controles y progreso -->
+  <div class="player-bar__center">
+    <div class="player-bar__controls">
+      <button class="is-hidden-sm" aria-label="Shuffle">
+        <span class="material-symbols-outlined">shuffle</span>
+      </button>
+      <button aria-label="Previous">
+        <span class="material-symbols-outlined filled">skip_previous</span>
+      </button>
+      <button class="player-bar__play" aria-label="Play">
+        <span class="material-symbols-outlined filled">play_arrow</span>
+      </button>
+      <button aria-label="Next">
+        <span class="material-symbols-outlined filled">skip_next</span>
+      </button>
+      <button class="is-hidden-sm" aria-label="Repeat">
+        <span class="material-symbols-outlined">repeat</span>
+      </button>
+    </div>
+
+    <div class="player-bar__progress">
+      <span class="player-bar__time">1:24</span>
+      <div class="player-bar__track-bar">
+        <div class="player-bar__buffered"></div>
+        <div class="player-bar__played">
+          <div class="player-bar__thumb"></div>
+        </div>
+      </div>
+      <span class="player-bar__time">4:03</span>
+    </div>
+  </div>
+
+  <!-- Sección derecha: volumen y utilidades -->
+  <div class="player-bar__utils">
+       <button aria-label="Queue">
+      <span class="material-symbols-outlined">queue_music</span>
+    </button>
+    <div class="player-bar__volume">
+      <button aria-label="Volume">
+        <span class="material-symbols-outlined">volume_up</span>
+      </button>
+      <div class="player-bar__volume-bar">
+        <div class="player-bar__volume-fill">
+          <div class="player-bar__volume-thumb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>
