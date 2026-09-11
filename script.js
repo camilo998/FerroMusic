@@ -35,6 +35,7 @@
   let tickInterval = null;
 
   // ---------- Referencias al DOM (misma estructura, sin tocar clases) ----------
+  const appMain = document.querySelector(".app-main");
   const playBtn = document.querySelector(".player-bar__play");
   const playIcon = playBtn.querySelector(".material-symbols-outlined");
   const prevBtn = document.querySelector('[aria-label="Previous"]');
@@ -196,10 +197,17 @@
 
   const audioEl = document.getElementById("audioPlayer");
 
+  function syncMainPlaybackState() {
+    if (!appMain) return;
+    appMain.classList.toggle("is-playing", isPlaying);
+    appMain.classList.toggle("is-paused", !isPlaying);
+  }
+
   function play() {
     isPlaying = true;
     playIcon.textContent = "pause";
     playBtn.setAttribute("aria-label", "Pause");
+    syncMainPlaybackState();
 
     if (currentTrackHasAudio()) {
       audioEl.play().catch(function (err) {
@@ -215,6 +223,7 @@
     isPlaying = false;
     playIcon.textContent = "play_arrow";
     playBtn.setAttribute("aria-label", "Play");
+    syncMainPlaybackState();
 
     if (currentTrackHasAudio()) {
       audioEl.pause();

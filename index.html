@@ -23,7 +23,24 @@
 
 <!-- Área principal (placeholder de contenido) -->
 <main class="app-main">
-
+  <div class="punk-stage" aria-label="Animación punk del reproductor">
+    <div class="punk-stage__glow"></div>
+    <div class="punk-stage__badge">PUNK MODE</div>
+    <div class="punk-stage__bars" aria-hidden="true">
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+      <span class="punk-stage__bar"></span>
+    </div>
+    <div class="punk-stage__text">
+      <span class="punk-stage__eyebrow">Noise Riot</span>
+      <h2>Reproduce para encender el caos</h2>
+    </div>
+  </div>
 </main>
 
 <!-- Barra inferior del reproductor -->
@@ -93,6 +110,7 @@
   </div>
 
 </footer>
+<audio id="audioPlayer" preload="auto"></audio>
 <script src="script.js"></script>
 
 </body>
